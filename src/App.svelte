@@ -2,10 +2,14 @@
 	import ChordPlayer from "./ChordPlayer.svelte";
 	import scale from "./scale.svg";
 	import check from "./check.svg";
+	import logo from "./logo.svg";
 </script>
 
 <main>
 	<div class="sidebar">
+		<div class="logo">
+			<img src={logo} alt="" />
+		</div>
 		<div class="section">
 			<h1>Writing Chord Progressions</h1>
 			<div class="subsection">
@@ -128,6 +132,15 @@
 		padding-left: 15px;
 		margin-top: 20px;
 		color: #999999;
+	}
+	.logo {
+		display: grid;
+		justify-items: center;
+		padding: 20px 0;
+	}
+	.logo img {
+		height: 60px;
+		opacity: 0.5;
 	}
 	.section h1 {
 		font-size: 20px;
