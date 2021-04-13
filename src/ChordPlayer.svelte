@@ -3,31 +3,45 @@
 	import { spring } from "svelte/motion";
 	import { foo } from "./test.js";
 	import * as Tone from "tone";
+	import ChordI from "./Chords/I - C.wav";
+	import Chordii from "./Chords/ii - Dm.wav";
+	import Chordiii from "./Chords/iii - Em.wav";
+	import ChordIV from "./Chords/IV - F.wav";
+	import ChordV from "./Chords/V - G.wav";
+	import Chordvi from "./Chords/vi - Am.wav";
+	import Chordviio from "./Chords/viio - Bdim.wav";
 
 	const synth = new Tone.PolySynth().toDestination();
 	synth.volume.value = -6;
 	const offsets = spring([0, 0, 0, 0, 0], { stiffness: 0.2, damping: 0.4 });
-	let chords = ["c", "d", "e", "f", "g", "a", "b"];
+	let chords = ["I", "ii", "iii", "IV", "V", "vi", "vii°"];
+	let audio = {
+		I: new Tone.Player(ChordI).toDestination(),
+		ii: new Tone.Player(Chordii).toDestination(),
+		iii: new Tone.Player(Chordiii).toDestination(),
+		IV: new Tone.Player(ChordIV).toDestination(),
+		V: new Tone.Player(ChordV).toDestination(),
+		vi: new Tone.Player(Chordvi).toDestination(),
+		"vii°": new Tone.Player(Chordviio).toDestination(),
+	};
 	let colors = {
-		c: "#F6BC46",
-		d: "#F6BC46",
-		e: "#68C9CF",
-		f: "#EF8F9B",
-		g: "#F6BC46",
-		a: "#68C9CF",
-		b: "#68C9CF",
+		I: "#F6BC46",
+		ii: "#68C9CF",
+		iii: "#68C9CF",
+		IV: "#F6BC46",
+		V: "#F6BC46",
+		vi: "#68C9CF",
+		"vii°": "#EF8F9B",
 	};
 	let loop = true;
 	var seq;
 	let active = null;
 
 	$: phrase = [
-		{ chord: "c", notes: [], degree: "4", length: 4, offset: 0 },
-		{ chord: "c", notes: [], degree: "4", length: 4, offset: 0 },
-		{ chord: "c", notes: [], degree: "4", length: 4, offset: 0 },
-		{ chord: "c", notes: [], degree: "4", length: 4, offset: 0 },
-		// { chord: "c", degree: "4", length: 4, offset: 0 },
-		// { chord: "c", degree: "4", length: 4, offset: 0 },
+		{ chord: "IV", length: 4, offset: 0 },
+		{ chord: "IV", length: 4, offset: 0 },
+		{ chord: "IV", length: 4, offset: 0 },
+		{ chord: "IV", length: 4, offset: 0 },
 	];
 
 	function mod(n, m) {
@@ -41,38 +55,28 @@
 	onMount(() => {
 		seq = new Tone.Sequence(
 			function (time, note) {
-				synth.triggerAttackRelease(["C4", "E4", "G4"], "16n", time);
+				audio[note.note].start();
+				// synth.triggerAttackRelease(["C4", "E4", "G4"], "16n", time);
 				active = note.index;
 			},
-			phrase.map((chord, i) => ({ note: chord.chord + chord.degree, index: i })),
-			"4n"
+			phrase.map((chord, i) => ({ note: chord.chord, index: i })),
+			"1m"
 		);
 		seq.start(0);
 		Tone.start();
+		Tone.Transport.bpm.value = 120;
 	});
 
 	function handlePanMove(event, i) {
 		phrase[i].offset = Math.min(Math.max(phrase[i].offset + event.detail.dy, -30 * 3), 30 * 3);
-		let degree = "4";
-		if (-Math.round(phrase[i].offset / 30) < 0) {
-			degree = "3";
-		}
-		phrase[i].degree = degree;
-		phrase[i].chord = chords[mod(-Math.round(phrase[i].offset / 30), chords.length)];
+		phrase[i].chord = chords[-Math.round(phrase[i].offset / 30) + 3];
 	}
 
 	function handlePanEnd(event, i) {
-		let degree = "4";
-		if (-Math.round(phrase[i].offset / 30) < 0) {
-			degree = "3";
-		}
-		if (!playing)
-			synth.triggerAttackRelease(
-				chords[mod(-Math.round(phrase[i].offset / 30), chords.length)] + degree,
-				"4n"
-			);
+		let newChord = chords[-Math.round(phrase[i].offset / 30) + 3];
+		if (!playing) audio[newChord].start();
 		seq.events[i] = {
-			note: chords[mod(-Math.round(phrase[i].offset / 30), chords.length)] + degree,
+			note: newChord,
 			index: i,
 		};
 		// seq.set(chords[mod(-Math.round(phrase[i].offset / 30), chords.length)] + degree);
@@ -133,7 +137,7 @@
 					style="background: {colors[chord.chord]}; top: {Math.round(phrase[i].offset / 30) *
 						30}px;"
 				>
-					<h2>{chord.chord.toUpperCase()}</h2>
+					<h2>{chord.chord}</h2>
 				</div>
 			{/each}
 		</div>

@@ -5,6 +5,7 @@ import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import css from "rollup-plugin-css-only";
 import image from "@rollup/plugin-image";
+import files from "rollup-plugin-import-file";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -45,6 +46,11 @@ export default {
 			},
 		}),
 		image(),
+		files({
+			output: "public/",
+			extensions: /\.(wav)$/,
+			hash: true,
+		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
 		css({ output: "bundle.css" }),
