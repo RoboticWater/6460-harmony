@@ -61,11 +61,11 @@
 			own.
 		</p>
 		<p>
-			First, let’s introduce our virtual writing interface. Below you’ll see seven circles with
-			roman numerals (we’ll explain these letters are in a bit), each representing a different
-			chord. Underneath them are four squares, which are slots where you can add the chords from
-			above. Each slot holds one chord, allowing you to put four chords in succession. Try dragging
-			a chord to each block, then hit the play button to hear the chord progression you’ve made.
+			First, let’s introduce our virtual writing interface. Below you’ll see four rectangles called
+			<i>chord blocks</i>. You can select the chord each chord block is playing by dragging it up or
+			down. The play button on the left will play the chords in succession, and there is a loop
+			button you can toggle on or off. Spend a few minutes experimenting with this tool and see what
+			you can come up with!
 		</p>
 		<ChordPlayer />
 		<p>
