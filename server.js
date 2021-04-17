@@ -3,6 +3,7 @@ const express = require("express");
 const app = require("./public/App.js");
 
 const server = express();
+var PORT = process.env.PORT || 3001;
 
 server.use(express.static(path.join(__dirname, "public")));
 
@@ -20,5 +21,4 @@ server.get("*", function (req, res) {
 	res.end();
 });
 
-const port = 3001;
-server.listen(port, () => console.log(`Listening on port ${port}`));
+server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
