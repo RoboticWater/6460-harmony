@@ -10,6 +10,7 @@
 	import ChordV from "./Chords/V - G.wav";
 	import Chordvi from "./Chords/vi - Am.wav";
 	import Chordviio from "./Chords/viio - Bdim.wav";
+	export let initial = ["IV", "IV", "IV", "IV"];
 
 	const synth = new Tone.PolySynth().toDestination();
 	synth.volume.value = -6;
@@ -53,6 +54,11 @@
 	}
 
 	onMount(() => {
+		phrase = initial.map((chord) => ({
+			chord,
+			length: 4,
+			offset: (-chords.indexOf(chord) + 3) * 30,
+		}));
 		seq = new Tone.Sequence(
 			function (time, note) {
 				audio[note.note].start();

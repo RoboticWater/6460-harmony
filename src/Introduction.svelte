@@ -65,6 +65,70 @@
 			function. Some chords sound ‘stable’ and ‘at home’, some sound ‘unstable’ and ‘tense’, and
 			others sound like a ‘departure’.
 		</p>
+
+		<p>Let’s illustrate this with some examples.</p>
+
+		<p>
+			The I chord serves as the ‘home base’ for tonal music. Chord progressions typically sound
+			resolved when they land on the I chord. Because it serves as the ‘home’ for a chord
+			progression, many popular chord progressions begin with the I chord.
+		</p>
+
+		<p>
+			The V chord serves a different function. It creates ‘harmonic instability’ that wants to be
+			resolved. It generally sounds great resolved to the I chord (or chords with a similar
+			function).
+		</p>
+		For example, build out the following chord progression below: I-I-V-I. Notice how this chord progression
+		sounds stable for the first two I chords, tense on the V chord, then feels resolved when the final
+		I chord plays.
+		<p />
+		<ChordPlayer initial={["I", "I", "I", "I"]} />
+		<p>
+			This type of resolution sounds great, but it may not be right for every song. For some songs,
+			you may want to draw out the tension because it helps get the story and emotion across.
+		</p>
+
+		<p>
+			For example, add the I-I-V-I chord progression used above to the player below. But this time,
+			change the last I chord to the ii chord. How does the emotion of this progression change?
+		</p>
+		<ChordPlayer initial={["I", "I", "I", "I"]} />
+		<p>
+			Now instead of the chord progression sounding resolved on the fourth chord, the ii chord adds
+			some tension. Part of this is because that chord is minor, and part is because it sounds more
+			‘natural’ to move from V to I then V to ii.
+		</p>
+
+		<p>
+			Whatever the reason, the I-I-V-ii chord progression sounds more tense than the I-I-V-I chord
+			progression. Does this mean the I-I-V-ii progression is worse?
+		</p>
+		<p>It all depends on context.</p>
+
+		<p>
+			There may be situations where the more resolved and relaxed sounding I-I-V-I progression works
+			well, and there may be other situations where the more tense I-I-V-ii progression works
+			better.
+		</p>
+
+		<p>
+			Before we discuss the other diatonic triads and the theory behind functional harmony, let’s
+			take a break to work on a conceptual writing prompt.
+		</p>
+
+		<p>
+			When working on the writing prompt, keep in mind what we covered in this lesson. Namely, each
+			chord has a unique function: some sound stable, some sound tense, some sound like a departure.
+			We can mix and match chords (with their unique functions) to create a chord progression that
+			fits the emotional space we are writing for.
+		</p>
+
+		<p>
+			To the best of your ability, use your ear to choose the chords that help create a chord
+			progression that fits the prompt. As with music, there are no right or wrong answers for this
+			prompt. Trust your musical instinct and try your best!
+		</p>
 	</article>
 </main>
 
@@ -107,5 +171,6 @@
 	article {
 		grid-area: article;
 		text-align: justify;
+		padding-bottom: 300px;
 	}
 </style>

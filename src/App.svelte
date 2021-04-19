@@ -65,8 +65,7 @@
 	main {
 		display: grid;
 		grid-template-columns: 300px 1fr;
-		grid-template-areas:
-			"sidebar content";
+		grid-template-areas: "sidebar content";
 		gap: 20px;
 		height: 100%;
 	}
@@ -139,5 +138,9 @@
 		width: 15px;
 		margin: 6px;
 		padding: 0;
+	}
+	.content {
+		grid-area: content;
+		overflow: auto;
 	}
 </style>
