@@ -61,7 +61,7 @@
 		}));
 		seq = new Tone.Sequence(
 			function (time, note) {
-				audio[note.note].start();
+				if (playing) audio[note.note].start();
 				// synth.triggerAttackRelease(["C4", "E4", "G4"], "16n", time);
 				active = note.index;
 			},
