@@ -17,6 +17,14 @@
 			<img src={prompt} alt="" />
 		</div>
 		<ChordPlayer />
+		<h3>Question 1</h3>
+		<p>
+			<textarea name="paragraph_text" rows="5" />
+		</p>
+		<!-- <a
+			href="mailto:@gatech.edu?subject=test&body=Hi,I found this website and thought you might like it http://www.geocities.com/wowhtml/"
+			>Test</a
+		> -->
 	</article>
 </main>
 
@@ -64,5 +72,10 @@
 	article {
 		grid-area: article;
 		text-align: justify;
+		padding-bottom: 300px;
+	}
+
+	textarea {
+		width: 90%;
 	}
 </style>
